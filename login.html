@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login Berkas Arsip Marunda</title>
+    <link rel="icon" type="image/png" href="../assets/logo-sidebar.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <section class="brand-panel">
+
+            <div class="brand-content">
+
+                <div class="brand-logo">
+                    <img
+                        src="../assets/logo-header.png"
+                        alt="Logo PLN"
+                    >
+                </div>
+
+                <div class="brand-info">
+
+                    <span class="brand-label">
+                        SISTEM INFORMASI
+                    </span>
+
+                    <h1>
+                        Berkas Arsip<br>
+                        Marunda
+                    </h1>
+
+                    <p>
+                        Sistem pengelolaan dan monitoring
+                        berkas arsip PLN UP3 Marunda.
+                    </p>
+
+                </div>
+
+                <div class="brand-bottom">
+                    PLN UP3 Marunda
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="login-panel">
+
+            <div class="login-container">
+
+                <div class="mobile-logo">
+                    <img
+                        src="../assets/logo-header.png"
+                        alt="Logo PLN"
+                    >
+                </div>
+
+                <div class="login-heading">
+
+                    <span class="login-label">
+                        AKSES SISTEM
+                    </span>
+
+                    <h2>
+                        Selamat Datang
+                    </h2>
+                    <p>
+                        Silakan masuk untuk mengakses
+                        Berkas Arsip Marunda.
+                    </p>
+
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Masukkan email"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Masukkan password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="toggle-password"
+                                aria-label="Tampilkan password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="loginButton"
+                        class="login-button"
+                    >
+                        <span>Masuk</span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+                <div
+                    id="loginMessage"
+                    class="login-message"
+                ></div>
+
+
+                <div class="login-security">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Akses terbatas untuk pengguna terdaftar.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="../js/supabase.js"></script>
+    <script src="../js/login.js"></script>
+
+</body>
+
+</html>

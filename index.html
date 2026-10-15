@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Berkas Arsip Marunda PLN UP3 Marunda</title>
+  <link rel="icon" type="image/png" href="../assets/logo-sidebar.png">
+
+  <meta
+    name="description"
+    content="Dashboard pengelolaan berkas arsip PLN UP3 Marunda."
+  />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+
+<div class="single-delete-modal hidden" id="singleDeleteModal">
+
+  <div class="single-delete-overlay"></div>
+
+  <div class="single-delete-box">
+
+    <button
+      class="single-delete-close"
+      id="closeSingleDeleteModal"
+      type="button"
+      aria-label="Tutup"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="single-delete-icon">
+      <i class="fa-solid fa-trash-can"></i>
+    </div>
+
+    <h3>Hapus data?</h3>
+
+    <p id="singleDeleteText">
+      Apakah kamu yakin ingin menghapus data ini?
+    </p>
+
+    <div class="single-delete-actions">
+
+      <button
+        class="btn btn-light"
+        id="cancelSingleDelete"
+        type="button"
+      >
+        Batal
+      </button>
+
+      <button
+        class="btn btn-danger"
+        id="confirmSingleDelete"
+        type="button"
+      >
+        <i class="fa-solid fa-trash-can"></i>
+        Hapus Data
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="delete-modal hidden" id="deleteModal">
+
+  <div class="delete-modal-overlay"></div>
+
+  <div class="delete-modal-box">
+
+    <button
+      class="delete-modal-close"
+      id="closeDeleteModal"
+      type="button"
+      aria-label="Tutup"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="delete-modal-icon">
+      <i class="fa-solid fa-trash-can"></i>
+    </div>
+
+    <h3>Hapus semua data?</h3>
+
+    <p id="deleteModalText">
+      Semua data berkas akan dihapus secara permanen.
+    </p>
+
+    <div class="delete-modal-actions">
+
+      <button
+        class="btn btn-light"
+        id="cancelDelete"
+        type="button"
+      >
+        Batal
+      </button>
+
+      <button
+        class="btn btn-danger"
+        id="confirmDelete"
+        type="button"
+      >
+        <i class="fa-solid fa-trash-can"></i>
+        Hapus Semua
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="logout-modal hidden" id="logoutModal">
+  <div class="logout-modal-overlay"></div>
+
+  <div class="logout-modal-box">
+
+    <button
+      class="logout-modal-close"
+      id="closeLogoutModal"
+      type="button"
+      aria-label="Tutup"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="logout-modal-icon">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </div>
+
+    <h3>Keluar dari akun?</h3>
+
+    <p>
+      Apakah kamu yakin ingin logout dari Berkas Arsip Marunda?
+    </p>
+
+    <div class="logout-modal-actions">
+
+      <button
+        class="btn btn-light"
+        id="cancelLogout"
+        type="button"
+      >
+        Batal
+      </button>
+
+      <button
+        class="btn btn-danger"
+        id="confirmLogout"
+        type="button"
+      >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-logo">
+        <img src="../assets/logo-header.png" alt="Logo PLN" />
+      </div>
+
+      <nav class="side-nav">
+
+        <button
+  class="nav-item active"
+  data-section="dashboard"
+  type="button"
+>
+  <span class="nav-icon">
+    <i class="fa-solid fa-chart-pie"></i>
+  </span>
+  <span>Dashboard</span>
+</button>
+
+<button
+  class="nav-item"
+  data-section="data"
+  type="button"
+>
+  <span class="nav-icon">
+    <i class="fa-solid fa-folder-open"></i>
+  </span>
+  <span>Data Berkas</span>
+</button>
+
+<button
+  class="nav-item"
+  data-section="import"
+  type="button"
+>
+  <span class="nav-icon">
+    <i class="fa-solid fa-file-excel"></i>
+  </span>
+  <span>Import Excel</span>
+</button>
+
+<button
+  class="nav-item logout-item"
+  id="logoutBtn"
+  type="button"
+>
+  <span class="nav-icon">
+    <i class="fa-solid fa-right-from-bracket"></i>
+  </span>
+  <span>Logout</span>
+</button>
+
+      </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+      <header class="topbar">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenu"
+          type="button"
+          aria-label="Buka menu"
+        >
+
+        <div class="stat-icon"> <i class="fa-solid fa-bars"></i> </div>
+
+        </button>
+
+        <div class="header-brand">
+
+          <div class="logo-wrap">
+            <img
+              src="../assets/logo-sidebar.png"
+              alt="Logo PLN"
+            />
+          </div>
+
+          <div class="header-title">
+            <h1>Berkas Arsip Marunda</h1>
+          </div>
+
+        </div>
+
+        <div class="header-actions">
+
+        <button
+          class="btn btn-primary"
+          id="importBtn"
+          type="button"
+        >
+          <i class="fa-solid fa-file-excel"></i>
+          Import Excel
+        </button>
+
+        <button
+           class="btn btn-primary"
+            id="exportBtn"
+            type="button"
+          >
+              <i class="fa-solid fa-file-export"></i>
+              Export Hasil
+            </button>
+
+        </div>
+
+      </header>
+
+      <section
+        class="content"
+        id="dashboardSection"
+      >
+
+        <div class="page-heading">
+
+          <div>
+            <p class="eyebrow">DASHBOARD ARSIP</p>
+            <h2>Ringkasan Berkas</h2>
+          </div>
+
+          <div
+            class="last-update"
+            id="lastUpdate"
+          >
+            Belum ada data diimpor
+          </div>
+
+        </div>
+
+<div class="stats-grid">
+
+  <article class="stat-card">
+
+        <div class="stat-icon blue">
+          <i class="fa-solid fa-folder-open"></i>
+        </div>
+
+        <div>
+          <span>Total Berkas</span>
+
+          <strong id="totalFiles">
+            0
+          </strong>
+
+          <small id="filesHint">
+            Data yang tampil
+          </small>
+        </div>
+
+      </article>
+
+      <article class="stat-card">
+
+        <div class="stat-icon green">
+          <i class="fa-solid fa-money-bill-wave"></i>
+        </div>
+
+        <div>
+          <span>Total Nilai Tagihan</span>
+
+          <strong id="totalValue">
+            Rp 0
+          </strong>
+
+          <small id="valueHint">
+            Nilai dari data yang tampil
+          </small>
+        </div>
+
+      </article>
+
+      <article class="stat-card">
+
+        <div class="stat-icon orange">
+          <i class="fa-solid fa-building"></i>
+        </div>
+
+        <div>
+          <span>Total Vendor</span>
+
+          <strong id="totalVendors">
+            0
+          </strong>
+
+          <small id="vendorHint">
+            Vendor yang tampil
+          </small>
+        </div>
+
+      </article>
+
+    </div>
+
+        <section class="panel filter-panel">
+
+          <div class="panel-heading">
+
+            <div>
+              <h3>Filter & Pencarian</h3>
+            </div>
+
+            <button
+              class="btn btn-light"
+              id="resetFilters"
+              type="button"
+            >
+              Reset Filter
+            </button>
+
+          </div>
+
+
+          <div class="filter-grid">
+
+            <label class="field search-field">
+
+              <span>Pencarian</span>
+
+              <div class="input-icon">
+
+                <span>⌕</span>
+
+                <input
+                  id="searchInput"
+                  type="search"
+                  placeholder="Cari nama dokumen, nomor kontrak, vendor..."
+                />
+
+              </div>
+
+            </label>
+
+
+            <label class="field">
+
+              <span>Tahun</span>
+
+              <select id="yearFilter">
+
+                <option value="">
+                  Semua Tahun
+                </option>
+
+              </select>
+
+            </label>
+
+            <label class="field">
+
+              <span>Bulan</span>
+
+              <select id="monthFilter">
+
+                <option value="">
+                  Semua Bulan
+                </option>
+
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+
+              </select>
+
+            </label>
+
+            <label class="field">
+
+              <span>Jenis Berkas</span>
+
+              <select id="typeFilter">
+
+                <option value="">
+                  Semua Berkas
+                </option>
+
+              </select>
+
+            </label>
+
+          </div>
+
+        </section>
+
+        <section
+          class="panel data-panel"
+          id="dataPanel"
+        >
+
+          <div class="panel-heading table-heading">
+
+            <div>
+
+              <h3>Daftar Berkas</h3>
+
+              <p id="resultInfo">
+                Belum ada data. Silakan import file Excel.
+              </p>
+
+            </div>
+
+
+            <div class="table-actions">
+
+            <button type="button" class="btn btn-primary" id="openManualAdd">
+               <i class="fa-solid fa-plus"></i>
+                  Tambah Berkas
+           </button>
+
+              <button
+                class="btn btn-danger"
+                id="clearDataBtn"
+                type="button"
+              >
+                Hapus Data
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="table-wrap">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>No</th>
+
+                  <th>Tanggal Dokumen</th>
+
+                  <th>Nomor Kontrak</th>
+
+                  <th>Nama Dokumen</th>
+
+                  <th>Vendor</th>
+
+                  <th class="numeric">Nilai</th>
+
+                  <th>Nama Box</th>
+
+                  <th>Jenis Berkas</th>
+
+                  <th class="action-cell">
+                    Aksi
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody id="dataBody">
+
+                <tr class="empty-row">
+
+                  <td colspan="9">
+
+                    <div class="empty-state">
+
+                     <div class="stat-icon blue">
+                      <i class="fa-solid fa-folder-open"></i>
+                    </div>
+
+                      <strong>
+                        Belum ada data
+                      </strong>
+
+                      <span>
+                        Import file Excel untuk menampilkan seluruh sheet bulanan menjadi satu tabel.
+                      </span>
+
+                      <button
+                        class="btn btn-primary"
+                        id="emptyImportBtn"
+                        type="button"
+                      >
+                        Import Excel
+                      </button>
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+          <div
+            class="pagination"
+            id="pagination"
+          ></div>
+
+        </section>
+
+      </section>
+
+      <section
+        class="content hidden"
+        id="importSection"
+      >
+
+        <div class="page-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              IMPORT DATA
+            </p>
+
+            <h2>
+              Import Berkas dari Excel
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <section class="panel import-card">
+
+          <div
+            class="dropzone"
+            id="dropzone"
+          >
+
+ <div class="upload-icon">
+  <i class="fa-solid fa-file-excel"></i>
+</div>
+
+<h3>
+  Tarik file Excel ke sini
+</h3>
+
+<p>
+  atau pilih file
+  <strong>.xlsx</strong>
+  /
+  <strong>.xls</strong>
+  dari komputer
+</p>
+
+<label class="btn btn-primary upload-btn">
+  <i class="fa-solid fa-folder-open"></i>
+  Pilih File Excel
+
+  <input
+    type="file"
+    id="excelInput"
+    accept=".xlsx,.xls"
+    multiple
+  />
+</label>
+
+          <div class="import-info">
+
+            <div>
+
+              <strong>
+                Format kolom yang didukung
+              </strong>
+
+              <p>
+                NO, TANGGAL DOKUMEN, NOMOR KONTRAK, NAMA DOKUMEN, VENDOR, NILAI, Nama Box.
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <strong>
+                Sheet bulanan
+              </strong>
+
+              <p>
+                Sheet seperti 01.2024, 02.2024, 03.2024, dan seterusnya akan digabung otomatis. Tahun/bulan juga dapat diambil dari tanggal dokumen atau nama sheet.
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <strong>
+                Jenis berkas
+              </strong>
+
+              <p>
+                Jika Excel memiliki kolom “Jenis Berkas”, “Berkas”, atau “Kategori”, nilainya akan dipakai sebagai filter. Jika tidak ada, sistem menggunakan “Umum”.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="import-preview hidden"
+            id="importPreview"
+          >
+
+            <div class="preview-head">
+
+              <div>
+
+                <h3>
+                  Hasil Import
+                </h3>
+
+                <p id="previewText"></p>
+
+              </div>
+
+              <span class="success-badge">
+                ✓ Berhasil dibaca
+              </span>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </section>
+
+      <footer class="footer">
+
+        <span>
+          Berkas Arsip Marunda
+        </span>
+
+        <span>
+          PLN UP3 Marunda
+        </span>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+  <div
+    id="editModal"
+    class="edit-modal hidden"
+  >
+
+    <div class="edit-modal-content">
+
+      <div class="edit-modal-header">
+
+        <div>
+
+          <h3>
+            Edit Data Berkas
+          </h3>
+
+          <p>
+            Perbarui informasi dokumen yang dipilih.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="edit-close"
+          id="closeEditModal"
+        >
+          &times;
+        </button>
+
+      </div>
+
+
+      <form id="editForm">
+
+        <input
+          type="hidden"
+          id="editIndex"
+        />
+
+
+        <div class="edit-form-grid">
+
+          <div class="form-group">
+
+            <label>
+              Tanggal Dokumen
+            </label>
+
+            <input
+              type="date"
+              id="editDate"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Nomor Kontrak
+            </label>
+
+            <input
+              type="text"
+              id="editContract"
+            />
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label>
+              Nama Dokumen
+            </label>
+
+            <input
+              type="text"
+              id="editName"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Vendor
+            </label>
+
+            <input
+              type="text"
+              id="editVendor"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Nilai
+            </label>
+
+            <input
+              type="number"
+              id="editValue"
+              min="0"
+              step="any"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Nama Box
+            </label>
+
+            <input
+              type="text"
+              id="editBox"
+            />
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Jenis Berkas
+            </label>
+
+            <input
+              type="text"
+              id="editType"
+            />
+
+          </div>
+
+        </div>
+
+        <div class="edit-modal-footer">
+
+          <button
+            type="button"
+            class="btn btn-light"
+            id="cancelEdit"
+          >
+            Batal
+          </button>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+
+            <i class="fa-solid fa-check"></i>
+
+            Simpan Perubahan
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  
+<div id="manualAddModal" class="manual-modal hidden">
+  <div class="manual-modal-overlay" id="manualAddOverlay"></div>
+
+  <div class="manual-modal-box">
+    <div class="manual-modal-header">
+      <div>
+        <h3>Tambah Berkas</h3>
+        <p>Lengkapi informasi dokumen arsip.</p>
+      </div>
+
+      <button type="button" id="closeManualAdd" aria-label="Tutup">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form id="manualAddForm">
+      <div class="manual-form-grid">
+
+        <div class="manual-field">
+          <label for="manualDate">Tanggal Dokumen</label>
+          <input type="date" id="manualDate">
+        </div>
+
+        <div class="manual-field">
+          <label for="manualContract">Nomor Kontrak</label>
+          <input type="text" id="manualContract">
+        </div>
+
+        <div class="manual-field full">
+          <label for="manualName">Nama Dokumen *</label>
+          <input type="text" id="manualName" required>
+        </div>
+
+        <div class="manual-field">
+          <label for="manualVendor">Vendor</label>
+          <input type="text" id="manualVendor">
+        </div>
+
+        <div class="manual-field">
+          <label for="manualValue">Nilai Tagihan (Rp)</label>
+          <input type="number" id="manualValue"
+                 min="0" step="any" value="0">
+        </div>
+
+        <div class="manual-field">
+          <label for="manualBox">Nama / ID Box</label>
+          <input type="text" id="manualBox"
+                 placeholder="Contoh: MRD/box/month/year">
+        </div>
+
+        <div class="manual-field">
+          <label for="manualType">Jenis Berkas</label>
+          <input type="text" id="manualType" value="Umum">
+        </div>
+
+      </div>
+
+      <div class="manual-modal-actions">
+        <button type="button" class="btn btn-light"
+                id="cancelManualAdd">
+          Batal
+        </button>
+
+        <button type="submit" class="btn btn-primary"
+                id="saveManualAdd">
+          <i class="fa-solid fa-floppy-disk"></i>
+          Simpan Berkas
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../js/supabase.js"></script>
+
+<script src="../js/app.js"></script>
+
+
+</body>
+</html>
